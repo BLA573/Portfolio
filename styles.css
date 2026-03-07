@@ -1,0 +1,120 @@
+:root {
+  --bg-primary: #0d1117;
+  --bg-secondary: #0f1419;
+  --text-primary: #e8f5e9;
+  --text-secondary: #a8d5ba;
+  --accent: #2ec158;
+}
+
+.light-mode {
+  --bg-primary: #f0f7f1;
+  --bg-secondary: #ffffff;
+  --text-primary: #0d1b0d;
+  --text-secondary: #2d5a2d;
+  --accent: #1e8c2a;
+}
+
+body {
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.bg-primary {
+  background-color: var(--bg-primary);
+}
+
+.bg-secondary {
+  background-color: var(--bg-secondary);
+}
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-accent {
+  color: var(--accent);
+}
+
+.border-accent {
+  border-color: var(--accent);
+}
+
+.bg-accent {
+  background-color: var(--accent);
+}
+
+.ring-accent {
+  --tw-ring-color: var(--accent);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-delay-1 {
+  animation-delay: 0.1s;
+}
+
+.animate-delay-2 {
+  animation-delay: 0.2s;
+}
+
+.animate-delay-3 {
+  animation-delay: 0.3s;
+}
+
+.skill-chip {
+  background: var(--bg-secondary);
+  border: 1px solid var(--accent);
+  transition: all 0.2s ease;
+}
+
+.skill-chip:hover {
+  background: var(--accent);
+  color: var(--bg-primary);
+}
+
+.project-card {
+  background: var(--bg-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.light-mode .project-card {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.project-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+
+.modal-backdrop {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.light-mode .modal-backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
