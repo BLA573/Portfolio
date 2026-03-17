@@ -85,15 +85,182 @@ body {
   animation-delay: 0.3s;
 }
 
-.skill-chip {
-  background: var(--bg-secondary);
-  border: 1px solid var(--accent);
-  transition: all 0.2s ease;
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.9rem;
 }
 
-.skill-chip:hover {
+.skill-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.45rem;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.9rem;
+  padding: 1rem 0.85rem;
+  min-height: 172px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+}
+
+.light-mode .skill-card {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.92), rgba(245, 250, 246, 0.92));
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 24px rgba(7, 31, 12, 0.08);
+}
+
+.skill-card:hover,
+.skill-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.32);
+  outline: none;
+}
+
+.light-mode .skill-card:hover,
+.light-mode .skill-card:focus-visible {
+  box-shadow: 0 12px 28px rgba(7, 31, 12, 0.14);
+}
+
+.skill-icon-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 0.85rem;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.light-mode .skill-icon-wrap {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.skill-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.skill-icon--wide {
+  width: 42px;
+  height: auto;
+  max-height: 26px;
+  object-fit: contain;
+}
+
+.skill-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+.skill-level {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.skill-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.32rem;
+}
+
+.skill-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.light-mode .skill-dot {
+  background: rgba(0, 0, 0, 0.16);
+  border-color: rgba(0, 0, 0, 0.16);
+}
+
+.skill-dot.is-filled {
   background: var(--accent);
-  color: var(--bg-primary);
+  border-color: var(--accent);
+}
+
+.skill-card::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 12px);
+  transform: translateX(-50%) translateY(6px);
+  width: max-content;
+  max-width: 230px;
+  padding: 0.45rem 0.6rem;
+  border-radius: 0.5rem;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  background: #08120b;
+  color: #dff7e3;
+  border: 1px solid rgba(46, 193, 88, 0.45);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 20;
+}
+
+.light-mode .skill-card::after {
+  background: #0f2412;
+  color: #ebffef;
+}
+
+.skill-card::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  width: 10px;
+  height: 10px;
+  transform: translateX(-50%) rotate(45deg);
+  background: #08120b;
+  border-right: 1px solid rgba(46, 193, 88, 0.45);
+  border-bottom: 1px solid rgba(46, 193, 88, 0.45);
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  z-index: 19;
+}
+
+.skill-card:hover::after,
+.skill-card:hover::before,
+.skill-card:focus-visible::after,
+.skill-card:focus-visible::before {
+  opacity: 1;
+}
+
+.skill-card:hover::after,
+.skill-card:focus-visible::after {
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 640px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .skill-card {
+    min-height: 162px;
+  }
+
+  .skill-card::after {
+    display: none;
+  }
+
+  .skill-card::before {
+    display: none;
+  }
 }
 
 .project-card {

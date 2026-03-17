@@ -30,6 +30,7 @@ const dom = {
   modalTitle: document.getElementById('modal-title'),
   modalDate: document.getElementById('modal-date'),
   modalDesc: document.getElementById('modal-desc'),
+  modalLink: document.getElementById('modal-link'),
   toast: document.getElementById('toast')
 };
 
@@ -102,10 +103,21 @@ function setModalVisibility(isVisible) {
   dom.certModal?.classList.toggle('flex', isVisible);
 }
 
-function openCertModal(title, date, desc) {
+function openCertModal(title, date, desc, link) {
   setTextContent(dom.modalTitle, title);
   setTextContent(dom.modalDate, date);
   setTextContent(dom.modalDesc, desc);
+
+  if (dom.modalLink) {
+    if (link) {
+      dom.modalLink.href = link;
+      dom.modalLink.classList.remove('hidden');
+    } else {
+      dom.modalLink.classList.add('hidden');
+      dom.modalLink.removeAttribute('href');
+    }
+  }
+
   setModalVisibility(true);
 }
 
@@ -127,6 +139,20 @@ function showToast(message) {
   }, 3000);
 }
 
+function downloadResume() {
+  const resumePath = 'Resume.pdf';
+  const link = document.createElement('a');
+  link.href = resumePath;
+  link.download = 'Hailemichael.pdf';
+  link.style.display = 'none';
+
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  showToast('Resume download started.');
+}
+
 function toggleTheme() {
   isLightMode = !isLightMode;
   dom.root.classList.toggle('light-mode', isLightMode);
@@ -137,7 +163,7 @@ function toggleTheme() {
 function handleAction(action) {
   const actions = {
     'show-demo': () => showToast('Demo runs locally — clone the repo to try it!'),
-    'download-resume': () => showToast('Resume download started! (Demo)'),
+    'download-resume': downloadResume,
     'close-cert-modal': closeCertModal
   };
 
@@ -153,8 +179,8 @@ function handleDocumentClick(event) {
 
   const certificateTrigger = event.target.closest('.cert-trigger');
   if (certificateTrigger) {
-    const { modalTitle, modalDate, modalDesc } = certificateTrigger.dataset;
-    openCertModal(modalTitle, modalDate, modalDesc);
+    const { modalTitle, modalDate, modalDesc, modalLink } = certificateTrigger.dataset;
+    openCertModal(modalTitle, modalDate, modalDesc, modalLink);
   }
 }
 
