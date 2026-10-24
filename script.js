@@ -1,3 +1,6 @@
+(()=>{
+const $=id=>document.getElementById(id);
+const mt=$('mt'),mdate=$('mdate'),mdesc=$('mdesc'),mlink=$('mlink'),n=$('n'),em=$('em'),mm=$('mm');
 // Code rain background
 const cv=document.getElementById('rain'),cx=cv.getContext('2d');
 const snip=['nmap -sV -p- 10.0.0.1','SELECT * FROM users WHERE 1=1','sudo tcpdump -i eth0','0xDEADBEEF','chmod 600 id_rsa','import socket','GET /admin HTTP/1.1','iptables -A INPUT -j DROP','sqlmap --batch','ssh root@target','def scan(host):','HTTP 403','MQTT CONNECT','hydra -l admin','whoami && id','alert tcp any any','10110100','/etc/shadow','nc -lvnp 4444','TLS 1.3'];
@@ -88,3 +91,5 @@ pt.addEventListener('pointermove',e=>{const r=pt.getBoundingClientRect(),x=(e.cl
 pt.style.setProperty('--ry',((x-.5)*18)+'deg');pt.style.setProperty('--rx',((.5-y)*18)+'deg');
 pt.style.setProperty('--mx',x*100+'%');pt.style.setProperty('--my',y*100+'%')});
 pt.addEventListener('pointerleave',()=>{pt.style.setProperty('--rx','0deg');pt.style.setProperty('--ry','0deg')})}
+
+})();
